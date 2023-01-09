@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .row {
+        margin-top: 2%;
+    }
+    .footer {
+        margin-top: 2%;
+  background-image: url("https://imgs.search.brave.com/OUna0VmxX8zvj0AOOMva0fNhECEvQyPUfvMv4JXv194/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJjYXZlLmNv/bS93cC8xUEZIeVl5/LmpwZw");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 20px 0px; 
+    color: white;
+    bottom: 0;
+    width: 100%;}
+    
+</style>
+<body>
+    <%- include("header", {active: "Staff List", adminname: adminname}); %>
+        <div style="margin-top: 5%;" class="offset-4">
+            <form class="form-inline"  action="/adminDashboard/stafflist" method="GET">
+                <input class="form-control col-4" name="search" type="search" placeholder="Search" aria-label="Search">
+                <button type="submit" class="btn btn-outline-success offset-1">Search</button>
+            </form>
+        </div>
+        <div class="row">
+            <% for(var i = 0; i < doctors.length; i++) {%>
+            <div class="col-12 offset-2 col-md-3 offset-md-1">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <% year = doctors[i].dob.slice(0,4) %>
+                        <% today = new Date();%>
+                        <% year = today.getFullYear()-year; %>
+                        <img class="card-img-top" src="https://imgs.search.brave.com/YzuN4or3RAFx0ByXU2CpRH9K0vY7eaT76NgwYR6P6GQ/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9waWt3/aXphcmQuY29tL3Bo/b3Rvcy9wb3J0cmFp/dC1vZi1zbWlsaW5n/LWRvY3Rvci1zdGFu/ZGluZy13aXRoLWFy/bXMtY3Jvc3NlZC0t/NzVkOTQyYjkwMjNl/MGY5N2Q4ZTE0NmNi/NjA3NTRjZGQtbC5q/cGc" alt="Card image cap">
+                        <h4>Name: <%= doctors[i].name %></h4>
+                        <h5>Age: <%= year %> years</h5>
+                        <h5>Dept: <%= doctors[i].specialist %></h5>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+        <footer class="footer">
+            <div class="offset-3 offset-md-5">
+                <p>© Copyright 2022 Health Vault</p>
+            </div>
+        </footer>
+</body>
+</html>
